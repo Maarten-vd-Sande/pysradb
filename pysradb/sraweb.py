@@ -534,7 +534,8 @@ class SRAweb(SRAdb):
             if isinstance(sample_attributes, OrderedDict):
                 sample_attributes = [sample_attributes]
             exp_record = record["EXPERIMENT"]
-            run_sets = record["RUN_SET"]["RUN"]
+            # get all runs, when no run is set return empty list
+            run_sets = record.get("RUN_SET", {"RUN": []})["RUN"]
 
             if not isinstance(run_sets, list):
                 run_sets = [run_sets]
